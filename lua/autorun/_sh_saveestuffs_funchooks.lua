@@ -227,7 +227,7 @@ local function reformFunction(name)
         addFunction(nil, function(ent, ...)
             local inputs = {...}
             --if SERVER then print(name .. "_RAW") end
-            return __undetoured(ent, inputs, raw and raw(ent, ...) or __raw(ent, ...))
+            return __undetoured(ent, inputs, raw(ent, ...))
         end)
 
         for key, func in SortedPairs(hooks, true) do

@@ -24,6 +24,8 @@ local targetMetas = {
     "PhysObj",
     "Vector",
     "Angle",
+    "CMoveData",
+    "CUserCmd",
 }
 local metas = {
     util = util,
@@ -275,9 +277,6 @@ function funchooks.Add(name, id, func)
     prog[id] = func
 
     reformFunction(name)
-
-    --PrintTable(hooks)
-
 end
 function funchooks.Remove(name, id, func, noReform)
     id = tostring(id)
@@ -295,9 +294,6 @@ function funchooks.Remove(name, id, func, noReform)
     prog[id] = nil
 
     reformFunction(name)
-
-    --PrintTable(hooks)
-
 end
 
 -- 修改function的结果
@@ -309,9 +305,6 @@ function funchooks.AddPost(name, id, func)
     --id = tostring(id)
     
     if isfunction(name) then
-        
-        
-
         return
     end
 
@@ -328,9 +321,6 @@ function funchooks.AddPost(name, id, func)
     prog[id] = func
 
     reformFunction(name)
-
-    --PrintTable(hooks)
-
 end
 function funchooks.RemovePost(name, id, func, noReform)
     id = tostring(id)
@@ -348,9 +338,6 @@ function funchooks.RemovePost(name, id, func, noReform)
     prog[id] = nil
 
     reformFunction(name)
-
-    --PrintTable(hooks)
-
 end
 
 function funchooks.HasFunction(name, id)
@@ -368,9 +355,6 @@ function funchooks.HasFunction(name, id)
     end
 
     return isfunction(prog[id])
-
-    --PrintTable(hooks)
-
 end
 function funchooks.HasPostFunction(name, id)
     --getRawFunction(name)
@@ -387,15 +371,9 @@ function funchooks.HasPostFunction(name, id)
     end
 
     return isfunction(prog[id])
-
-    --PrintTable(hooks)
-
 end
 function funchooks.GetRawFunction(name)
     return getRawFunction(name)
-
-    --PrintTable(hooks)
-
 end
 
 --[[

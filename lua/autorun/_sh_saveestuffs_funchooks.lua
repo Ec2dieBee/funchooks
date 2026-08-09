@@ -226,11 +226,9 @@ local function reformFunction(name)
 
         end
 
-        addFunction(nil, function(ent, ...)
-            local inputs = {...}
-            --if SERVER then print(name .. "_RAW") end
-            return __undetoured(ent, inputs, raw(ent, ...))
-        end)
+        local postFuncs = prog[funcID]
+
+        prog[funcID] = raw
 
         for key, func in SortedPairs(hooks, true) do
 
@@ -239,6 +237,12 @@ local function reformFunction(name)
             if funcs[func] then continue end
 
             addFunction(key, func)
+        end
+
+        local preFuncs = prog[funcID]
+
+        prog[funcID] = function(ent, ...)
+            return postFuncs(ent, {...}, preFuncs(ent, ...))
         end
 
     end

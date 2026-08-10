@@ -29,8 +29,15 @@ local targetMetas = {
 }
 local metas = {
     util = util,
+    hook = hook,
+    gamemode = gamemode,
     _G = _G,
 }
+timer.Simple(0, function()
+    metas.GM = gmod.GetGamemode()
+end)
+
+
 local hooks = {}
 local hooksPost = {}
 
@@ -262,9 +269,6 @@ function funchooks.Add(name, id, func)
     --id = tostring(id)
     
     if isfunction(name) then
-        
-        
-
         return
     end
 

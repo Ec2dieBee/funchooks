@@ -31,6 +31,7 @@ local metas = {
     util = util,
     hook = hook,
     gamemode = gamemode,
+    debug = debug,
     _G = _G,
 }
 timer.Simple(0, function()
